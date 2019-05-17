@@ -1,2 +1,3 @@
-# spring-cloud-demo
-spring-cloud-demo
+# spring-cloud-archetype
+## 适用于生产环境的spring cloud 工程骨架
+### 更新中...

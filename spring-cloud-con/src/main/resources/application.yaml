@@ -1,0 +1,14 @@
+spring:
+ application:
+  name: consumer-demo
+
+server:
+  port: 1002
+
+# 注册
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1000/eureka/
+
+
