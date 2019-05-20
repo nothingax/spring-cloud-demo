@@ -11,3 +11,15 @@ logging: ## Spring Cloud Gateway的日志配置
     org.springframework.http.server.reactive: DEBUG
     org.springframework.web.reactive: DEBUG
     reactor.ipc.netty: DEBUG
+
+# 路由配置
+# 与com.demo.gateway.SpringCloudGatewayApplication 中的routeLocator等价
+#
+#spring:
+#  cloud:
+#    gateway:
+#      routes: #当访问http://localhost:8080/baidu,直接转发到https://www.baidu.com/
+#      - id: baidu_route
+#        uri: http://baidu.com:80/
+#        predicates:
+#        - Path=/baidu
