@@ -31,7 +31,11 @@
 
     <modules>
         <module>spring-cloud-api</module>
-        <!--<module>spring-cloud-consumer</module>-->
-        <module>spring-cloud-eureka</module></modules>
+        <module>spring-cloud-consumer</module>
+        <module>spring-cloud-eureka</module>
+        <module>spring-cloud-provider</module>
+        <module>spring-cloud-gateway</module>
+    </modules>
+
 
 </project>
