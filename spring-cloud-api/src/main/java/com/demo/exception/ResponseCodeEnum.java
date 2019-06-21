@@ -16,8 +16,7 @@ public enum ResponseCodeEnum {
     /**
      *
      */
-    SERVER_ERROR(0, "服务端错误"),
-    TRUE(1, "已删除")
+    SERVER_ERROR(500, "服务端错误"),
     ;
     private Integer errCode;
     private String errMsg;

@@ -1,4 +1,4 @@
-package com.demo.exception;
+package com.demo.config;
 
 import feign.codec.ErrorDecoder;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

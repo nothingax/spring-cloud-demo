@@ -1,5 +1,6 @@
 package com.demo.remote.impl;
 
+import com.demo.exception.BizException;
 import com.demo.model.Person;
 import com.demo.remote.PersonRemoteService;
 import com.demo.service.impl.PersonService;
@@ -26,6 +27,9 @@ public class PersonRemoteServiceImpl implements PersonRemoteService {
 
     @Override
     public Person findById(String id) {
-        return personService.findById(id);
+
+        Person person = personService.findById(id);
+        throw new BizException(2323, "业务异常message");
+        // return person;
     }
 }

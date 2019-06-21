@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * Program Name: spring-cloud-demo
  * <p>
- * Description:
+ * Description: 业务异常
  * <p>
  *
  * @author zhangjianwei
@@ -13,7 +13,7 @@ import lombok.Data;
  * @date 2019/6/17 6:46 PM
  */
 @Data
-public class BaseException extends RuntimeException {
+public class BizException extends RuntimeException {
     private static final long serialVersionUID = -6131476368606527012L;
 
     /**
@@ -29,36 +29,41 @@ public class BaseException extends RuntimeException {
      */
     private String stackTraceString;
 
-    public BaseException() {
+    public BizException() {
         super();
     }
 
-    public BaseException(String errMsg) {
+    public BizException(String errMsg) {
         super(errMsg);
     }
 
-    public BaseException(Throwable cause) {
+    public BizException(Throwable cause) {
         super(cause);
     }
 
-    public BaseException(Integer errCode, Throwable cause) {
+    public BizException(String errMsg,Throwable cause) {
+        super(cause);
+        this.errMsg = errMsg;
+    }
+
+    public BizException(Integer errCode, Throwable cause) {
         super(cause);
         this.errCode = errCode;
     }
 
-    public BaseException(Integer errCode, String errMsg) {
+    public BizException(Integer errCode, String errMsg) {
         super(errMsg);
         this.errCode = errCode;
         this.errMsg = errMsg;
     }
 
-    public BaseException(Integer errCode, String errMsg, Throwable cause) {
+    public BizException(Integer errCode, String errMsg, Throwable cause) {
         super(errMsg, cause);
         this.errCode = errCode;
         this.errMsg = errMsg;
     }
 
-    public BaseException(ResponseCodeEnum exceptionEnum) {
+    public BizException(ResponseCodeEnum exceptionEnum) {
         super(exceptionEnum.getErrMsg());
         this.errCode = exceptionEnum.getErrCode();
         this.errMsg = exceptionEnum.getErrMsg();
@@ -66,7 +71,11 @@ public class BaseException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return JsonUtil.beanToJson(this);
+        return "{" +
+                "\"errCode\":" + errCode +
+                ", \"errMsg\":'" + errMsg + '\'' +
+                ", \"stackTraceString\":'" + stackTraceString + '\'' +
+                '}';
     }
 
 }
