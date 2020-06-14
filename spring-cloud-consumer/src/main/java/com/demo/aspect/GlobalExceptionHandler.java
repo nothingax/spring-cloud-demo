@@ -1,5 +1,6 @@
 package com.demo.aspect;
 
+import com.demo.common.WebResp;
 import com.demo.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -64,25 +65,21 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Exception exceptionHandle(Exception e, HttpServletRequest request) {
-        // String requestURI = request.g();
-        String message = e.getMessage();
-        System.out.println(message);
-        //
-        // 出现异常的请求url打印出来，参数也可以打印出来
-        // log.error(requestURI);
-        log.error(request.getParameterMap().toString());
+    public WebResp exceptionHandle(Exception e, HttpServletRequest request) {
+
+        // log.error(request.getParameterMap().toString());
         log.error("系统异常 ====================================", e);
-        // log.error("请求地址={}", request.getRequestURI());
-        // if (request instanceof ContentCachingRequestWrapper) {
-        //     ContentCachingRequestWrapper wrapper = (ContentCachingRequestWrapper) request;
-        //     log.error("请求内容:{}", StringUtils.toEncodedString(wrapper.getContentAsByteArray(), Charset
-        //             .forName(wrapper.getCharacterEncoding())));
-        // }
-        // LeoCaseDeskServiceImpl
-        log.error(getBeforeMessage(request));
-        throw new BizException(e.getMessage(), e.getCause());
+        // log.error(getBeforeMessage(request));
+        //
+        return WebResp.error(e.getMessage());
+        // throw new BizException(e.getMessage(), e.getCause());
     }
+
+
+
+
+
+
 
 
     private String getBeforeMessage(HttpServletRequest request) {

@@ -27,9 +27,27 @@ public class PersonRemoteServiceImpl implements PersonRemoteService {
 
     @Override
     public Person findById(String id) {
-
+        log.info("provider执行");
         Person person = personService.findById(id);
         throw new BizException(2323, "业务异常message");
         // return person;
+    }
+
+    @Override
+    public Person findPersonHeadPicReturnSlow(String id) {
+        // 模拟超长的响应时间
+        try {
+            Thread.sleep(10000000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    @Override
+    public Person testProviderException(String s) {
+        log.error("provider 是否重试执行？");
+        throw new RuntimeException("provider：执行出错，抛出异常");
     }
 }

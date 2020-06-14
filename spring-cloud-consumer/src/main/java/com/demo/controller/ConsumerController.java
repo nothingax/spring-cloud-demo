@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.common.WebResp;
 import com.demo.feignclient.PersonClient;
 import com.demo.model.Person;
 import com.demo.restservice.DemoClient;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
 /**
  * Program Name: spring-cloud-demo
  * <p>
- * Description: demo Controller
+ * Description: ConsumerController
  * <p>
  *
  * @author zhangjianwei
@@ -21,7 +22,7 @@ import javax.annotation.Resource;
  */
 @RestController
 @RequestMapping("consumerController")
-public class DemoController {
+public class ConsumerController {
     @Resource
     private DemoClient demoClient;
     @Resource
@@ -42,6 +43,28 @@ public class DemoController {
         return person;
     }
 
+    @RequestMapping("testGlobalExceptionHandler")
+    WebResp testGlobalExceptionHandler(){
+        throw new RuntimeException("抛出自定义或其他异常");
+    }
 
+    /**
+     * 模拟访问下游服务，下游响应慢，触发fallback
+     */
+    @RequestMapping("testFallback")
+    WebResp testFallback(){
+        Person person = personClient.findPersonHeadPicReturnSlow("1");
+        return WebResp.ok(person);
+    }
+
+
+    /**
+     * 模拟访问下游服务，下游响应慢，触发fallback
+     */
+    @RequestMapping("testProviderException")
+    WebResp testProviderException(){
+        Person person = personClient.testProviderException("1");
+        return WebResp.ok(person);
+    }
 
 }

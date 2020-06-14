@@ -5,10 +5,21 @@ spring:
 server:
   port: 1002
 
+
+# feign 使用 hystrix
+feign:
+  hystrix:
+    enabled: true
+
 # 注册
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:1000/eureka/
+
+# 饥饿加载，避免首次访问超时
+ribbon:
+  eager-load:
+    clients: true
 
 

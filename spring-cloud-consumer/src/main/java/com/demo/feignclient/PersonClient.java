@@ -13,6 +13,6 @@ import org.springframework.cloud.openfeign.FeignClient;
  * @version 1.0
  * @date 2019/6/20 3:20 PM
  */
-@FeignClient("provider-demo"/* provider工程的项目名，注册到了eureka中 */)
+@FeignClient(value = "provider-demo" ,fallbackFactory = PersonClientFallback.class/* provider工程的项目名，注册到了eureka中 */)
 public interface PersonClient extends PersonRemoteService {
 }

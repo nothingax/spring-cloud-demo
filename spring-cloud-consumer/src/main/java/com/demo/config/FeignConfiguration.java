@@ -1,6 +1,7 @@
 package com.demo.config;
 
 import feign.codec.ErrorDecoder;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.context.annotation.Configuration;
  */
 
 @Configuration
+@Slf4j
 public class FeignConfiguration {
 
     /**
@@ -28,6 +30,7 @@ public class FeignConfiguration {
     @Bean
     @ConditionalOnMissingBean(FeignErrorDecoder.class)
     public ErrorDecoder feignErrorDecoder() {
+        log.error("创建自定义ErrorDecoder bean");
         return new FeignErrorDecoder();
     }
 }

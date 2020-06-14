@@ -19,4 +19,11 @@ public interface PersonRemoteService {
 
     @RequestMapping("/findById")
     Person findById(@RequestParam("id") String id);
+
+
+    @RequestMapping("/findPersonHeadPicReturnSlow")
+    Person findPersonHeadPicReturnSlow(@RequestParam("id") String id);
+
+    @RequestMapping("/testProviderException")
+    Person testProviderException(String s);
 }
